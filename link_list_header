@@ -1,0 +1,152 @@
+#ifndef lnklist
+#define lnklist
+#endif
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+	char menu(){
+		cout<<"Type your choice :\n";
+		cout<<"0. Insert Node \n";
+		cout<<"1. Insert Node By Index \n";
+		cout<<"2. Delete Node \n";
+		cout<<"3. Delete Node By Index \n";
+		cout<<"4. Delete All Nodes \n";
+		cout<<"5. Reverse Node \n";
+		cout<<"6. Search By Index  \n";
+		cout<<"7. Copy In Another List  \n";
+		cout<<"8. Insert Students Info. \n";
+		cout<<"9. Insert By 2 Pow i . \n";
+		cout<<"10. Exit  \n";
+		char choice; cin>>choice; return choice;
+
+	}
+
+	int index(){
+	cout<<" Inter The Index :"; int index;cin>>index; 
+	return index;
+	}
+
+template <class T>
+class node{public:
+	T data;
+	node *link;};
+
+	template <class T>
+	void insert(T data,node<T>*&head){
+		node<T> *ins=new node<T>;
+		ins->link=NULL;
+		ins->data=data;
+		if(head !=NULL)
+			ins->link=head;
+		head=ins;
+	}
+
+	template <class T>
+	void insert_by_index(int index,T data,node<T>*&head){
+		if(index==1 && head==NULL){insert(data,head); return;}
+		if(index<=length(head)+1){
+		if(index==1){insert(data,head); return;}
+		node<T>*cur=head;
+		node<T>*ins=new node<T>;
+		ins->data=data;
+		for(int i=0;i<index-2;i++)
+			cur=cur->link;
+		ins->link=cur->link;
+		cur->link=ins;
+		}
+		else
+	cout<<"Invalid index\n";}
+
+	template <class T>
+	void Delete(node<T>*&head){
+		if(head !=NULL){
+		node <T>*del=head;
+		head=del->link;
+		delete del;}
+	}
+
+	template <class T>
+	void Delete_by_index(int index,node<T>*&head){
+		if(index<=length(head)){
+		node <T> *temp1=head;
+		if(index==1) {Delete(head); return;}
+		for(int i=0;i<index-2;i++)
+			temp1=temp1->link;
+		node <T> *temp2=temp1->link;
+		temp1->link=temp2->link;
+		delete temp2;}
+		else
+			cout<<" Index is valid \n";
+
+	}
+
+	template <class T>
+	void Delete_All(node<T>*&head){ 
+		if(head !=NULL){
+		node <T>*cur=head->link;
+		while(head->link !=NULL){
+			node <T>*del=head;
+			delete head;
+			head=cur;
+			cur=cur->link;}
+		}
+		delete head;
+		head=NULL;
+	}
+
+	template <class T>
+	void print(node<T>*&head){
+		if(head==NULL){cout<<"The list is Empty \n"; return;}
+		node <T> *cur=new node<T>;
+		cur=head;
+		while(cur !=NULL){
+			cout<<cur->data<<"  ";
+			cur=cur->link;
+		}cout<<endl;
+	}
+
+	template <class T>
+	void Reverse(node <T>*p,node <T>*&head){
+		if(p->link==NULL){
+			head=p;
+			return;
+		}
+		Reverse(p->link,head);
+		node <T>*rev=p->link;
+		rev->link=p;
+		p->link=NULL;
+	}
+
+	template <class T>
+	int length(node<T>*&head){
+		int count=0;
+		node<T> *cur=head;
+		while(cur->link !=NULL){
+			count++;
+			cur=cur->link;
+		}
+		return count+1;
+
+	}
+
+	template <class T>
+	T search(int index,node<T>*&head){
+		if(index<=length(head)){
+		node <T>*cur=head;
+		for(int i=0;i<index-1;i++)
+			cur=cur->link;
+		return cur->data;
+		}}
+
+	template <class T>
+	void copy(node <T> *&head,node <T> *&sec){
+		
+		while(head->link!=NULL){
+		insert(head->data,sec);
+		head=head->link;
+		}
+		insert_by_index(1,head->data,sec);
+		Reverse(sec,sec);
+	}
