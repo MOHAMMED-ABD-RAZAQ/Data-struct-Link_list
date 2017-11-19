@@ -1,0 +1,117 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include "lnklst.h"
+#include "stdIregs.h"
+using namespace std;
+
+
+
+	struct student{
+	int deg[3];
+	string name;
+};
+	
+	
+
+    template <class T>
+	void st_print(node<T> *&head)
+	 {
+			node <T> *cur=new node<T>;
+					cur=head; 
+					for(int i=0;i<length(head);i++){
+						cout<<i<<" - "<<cur->data.name;
+					for(int i=0;i<3;i++)
+					cout<<cur->data.deg[i]<<"\t";
+					cout<<endl;
+					cur=cur->link;
+					}cout<<endl;
+	}
+
+
+
+void main(){
+
+
+
+
+	node <double>*head=NULL;
+	node <double>*sec=NULL;
+
+	double data; int t,i=0; 
+char choice;
+
+
+
+		do
+		{      choice=menu();
+				switch (choice)
+							{
+				case '0':  cout<<" Inter The Data :"; cin>>data;insert(data,head);
+					system("cls");print(head);
+					break;
+				case '1': cout<<" Inter The Data :"; cin>>data;
+					insert_by_index(index(),data,head);
+					system("cls");print(head);
+					break;
+
+				case '2': Delete(head);
+					system("cls");print(head);
+					break;
+
+				case '3': Delete_by_index(index(),head);
+					system("cls");print(head);
+					break;
+
+				case '4': Delete_All(head);
+					system("cls");print(head);
+					break;
+
+				case '5': Reverse(head,head);
+					system("cls");print(head);
+					break;
+
+				case '6':t=index();
+					system("cls");
+					cout<<search(t,head)<<endl;
+					print(head);
+					break;
+
+				case '7':copy(head,sec);
+					system("cls");print(sec);
+					break;
+					
+			
+				case '8':
+					//============================================================================
+					student st[3];
+					node <student>*st_node=NULL;
+				
+					for(int i=0;i<3;i++)
+					{   cout<<"Insert Student Name  ";
+						cin>>st[i].name;
+						cout<<"Insert Student Deg  ";
+						for(int j=0;j<3;j++){
+							cin>>st[i].deg[j];}
+						insert(st[i],st_node);
+					}
+				Reverse(st_node,st_node);
+				system("cls");
+				st_print(st_node);
+				break;
+					
+
+				  //============================================================================
+				
+				
+					
+				
+							}
+
+		} while (choice !='10');
+		
+		
+					
+
+
+}
