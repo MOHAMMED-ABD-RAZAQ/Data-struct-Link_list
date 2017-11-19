@@ -17,7 +17,6 @@ using namespace std;
 		cout<<"6. Search By Index  \n";
 		cout<<"7. Copy In Another List  \n";
 		cout<<"8. Insert Students Info. \n";
-		cout<<"9. Insert By 2 Pow i . \n";
 		cout<<"10. Exit  \n";
 		char choice; cin>>choice; return choice;
 
